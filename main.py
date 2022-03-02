@@ -2,9 +2,6 @@
 # -*- coding: utf-8 -*-
 import os
 import sys
-
-from win32trace import read
-
 import config
 import db
 import random
