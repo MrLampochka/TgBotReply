@@ -347,22 +347,23 @@ def transferAttachmentsToTelegram(idd, attachments):
         attType = j.get('type')
         link = j.get('link')
 
-        if attType == 'photo' or attType == 'sticker':
-            module.bot.send_photo(config.getCell('vk_' + idd), link)
+        for i in range(len(config.getCell('vk_' + idd))):
+            if attType == 'photo' or attType == 'sticker':
+                module.bot.send_photo(config.getCell('vk_' + idd)[i], link)
 
-        elif attType == 'doc' or attType == 'gif' or attType == 'audio_message':
-            module.bot.send_document(config.getCell('vk_' + idd), link)
+            elif attType == 'doc' or attType == 'gif' or attType == 'audio_message':
+                module.bot.send_document(config.getCell('vk_' + idd)[i], link)
 
-        elif attType == 'other':
-            module.bot.send_message(config.getCell('vk_' + idd), link)
+            elif attType == 'other':
+                module.bot.send_message(config.getCell('vk_' + idd)[i], link)
 
-        elif attType == 'video':
+            elif attType == 'video':
 
-            # Потому что в ВК не может отправить полную ссылку на файл видео -_-
-            module.bot.send_message(config.getCell('vk_' + idd), link)
+                # Потому что в ВК не может отправить полную ссылку на файл видео -_-
+                module.bot.send_message(config.getCell('vk_' + idd)[i], link)
 
-        else:
-            module.bot.send_message(config.getCell('vk_' + idd), '( Неизвестный тип аттачмента )')
+            else:
+                module.bot.send_message(config.getCell('vk_' + idd)[i], '( Неизвестный тип аттачмента )')
 
 
 #   __      ___
