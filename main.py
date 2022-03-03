@@ -319,7 +319,7 @@ def transferMessagesToTelegram(idd, userName, mbody, fwdList):
     # Условие выполняется в случае какого-либо события
     if userName is None:
         if mbody:
-            for i in len(config.getCell('vk_' + idd)):
+            for i in range(len(config.getCell('vk_' + idd))):
                 module.bot.send_message(config.getCell('vk_' + idd)[i], str(mbody), parse_mode="Markdown")
         return False
 
@@ -332,11 +332,12 @@ def transferMessagesToTelegram(idd, userName, mbody, fwdList):
 
         for f in fwdList[0:]:
             forwardText = forwardText + str(' | ' + f.get('userName') + ':' + ' ' + f.get('body') + ' \n\n')
-
-        module.bot.send_message(config.getCell('vk_' + idd), niceText + '\n\n' + forwardText, parse_mode="Markdown")
+        for i in range(len(config.getCell('vk_' + idd))):
+            module.bot.send_message(config.getCell('vk_' + idd)[i], niceText + '\n\n' + forwardText, parse_mode="Markdown")
 
     else:
-        module.bot.send_message(config.getCell('vk_' + idd), niceText, parse_mode="Markdown")
+        for i in range(len(config.getCell('vk_' + idd))):
+            module.bot.send_message(config.getCell('vk_' + idd)[i], niceText, parse_mode="Markdown")
 
 
 # Посылаем аттачменты в Telegram
